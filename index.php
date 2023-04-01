@@ -90,13 +90,14 @@ $pdo = null;
     </section>
     <form class="formWrapper" method="POST" >
     <div>
-        <input type="submit" value="書き込む" name="submitButton">
+       
         <label for="">名前:</label>
         <input type="text" name="username">
     </div>
     <div>
         <textarea class="commentTextArea" method = "POST" name="comment"></textarea>
     </div>
+    <div> <input type="submit" value="書き込む" name="submitButton"></div>
     </form>
 </body>
 </html>
