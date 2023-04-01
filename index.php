@@ -7,22 +7,21 @@
     $stmt = null;
     $error_messages = array();
    
-   //DB接続
-   try{
+ //DB接続
+try{
     $pdo = new PDO('mysql:host=localhost;dbname=bbs-db', 'root', '');
     echo "Good morning, and in case I don't see ya, good afternoon, good evening, and good night! ";
- } catch (PDOException $e) {
-     echo "!!failure Don't have connection database " . $e-> getMessage();
-     exit;
- }
-    //フォームを打ち込んだ時
-    if(!empty($_POST["submitButton"])){
-    
+} catch (PDOException $e) {
+    echo "!!failure Don't have connection database " . $e-> getMessage();
+    exit;
+}
+//フォームを打ち込んだ時
+if(!empty($_POST["submitButton"])){
     //名前のチェック   
-     if(empty($_POST["username"])){
+    if(empty($_POST["username"])){
         echo "Please enter a valid name";
         $error_messages["username"] = "please enter a vaild name";
-       }
+    }
     //コメントのチェック
     if(empty($_POST["comment"])){
         echo "Please enter a comment";
@@ -31,7 +30,6 @@
        
     if(empty($error_messages)){
         $postDate = date("Y-m-d H-i-s");
-        
         try{
             $stmt = $pdo->prepare("INSERT INTO `bbs-table` (`username`, `comment`, `postDate`) VALUES (:username, :comment, :postDate)");
             $stmt->bindParam(':username', $_POST['username']);
@@ -45,24 +43,21 @@
             exit;
         }
     }
+}
 
-    }
+//DBからコメントを取得する
+$SQL = "SELECT * FROM `bbs-table`";
+$comment_array = $pdo->query($SQL);
 
+if (!$comment_array) {
+    echo "クエリの実行に失敗しました。" . print_r($pdo->errorInfo(), true);
+    exit;
+}
 
+//DBの接続を閉じる
+$pdo = null;
 
-
-      //DBからコメントを取得する
-      $SQL = "SELECT * FROM `bbs-table`";
-      $comment_array = $pdo->query($SQL);
-      
-      if (!$comment_array) {
-        echo "クエリの実行に失敗しました。" . print_r($pdo->errorInfo(), true);
-        exit;
-      }
-      
-      //DBの接続を閉じる
-      $pdo = null;
-      ?> 
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
