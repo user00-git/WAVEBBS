@@ -29,6 +29,7 @@
         $error_messages["comment"] = "please enter a comment";
     }
        
+    if(empty($error_messages)){
         $postDate = date("Y-m-d H-i-s");
         
         try{
@@ -42,8 +43,9 @@
         }catch(PDOException $e){
             echo $e-> getMessage();
             exit;
-
         }
+    }
+
     }
 
 
