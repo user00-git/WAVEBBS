@@ -61,7 +61,7 @@ $pdo = null;
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><p></p>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="chorome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,9 +78,9 @@ $pdo = null;
     <article>
         <div class="wrapper">
             <div class="nameArea">
-                <span>名前:</span>
+                <span>NAME  : &nbsp</span>
                 <p class="username"><?php echo $comment["username"]; ?></p>
-                <time>:</time>
+                <time>&nbsp : &nbsp </time>
                 <p><?php echo $comment["postDate"]; ?></p>
             </div>
             <p class="comment"><?php echo $comment["comment"]?></p>
@@ -91,13 +91,13 @@ $pdo = null;
     <form class="formWrapper" method="POST" >
     <div>
        
-        <label for="">名前:</label>
+        <label>NAME :</label>
         <input type="text" name="username">
     </div>
     <div>
         <textarea class="commentTextArea" method = "POST" name="comment"></textarea>
     </div>
-    <div> <input type="submit" value="書き込む" name="submitButton"></div>
+    <div> <input type="submit" value="SUBMIT" name="submitButton"></div>
     </form>
 </body>
 </html>
